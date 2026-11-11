@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template, request 
 import sqlite3
-
+from markupsafe import escape
 
 app = Flask(__name__)
 
@@ -47,7 +47,7 @@ def login():
         connection.close()
 
         if user:
-            return f"Добро пожаловать, {username}!"
+            return f"Добро пожаловать, {escape(username)}!"
 
         else:
             return "Неверный логин или пароль!"
